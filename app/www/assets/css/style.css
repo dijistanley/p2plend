@@ -1,0 +1,23 @@
+/*
+
+* Override Pages default styles or create your own styles here
+
+*/
+
+.fw100{
+    font-weight: 100;
+}
+
+.fw300{
+    font-weight: 300;
+}
+
+.overlay-search-location
+{
+    font-size: 50px;
+    height: 100px;
+    letter-spacing: -1.925px;
+    line-height: 100px;
+    width:100%;
+    padding-left: 0!important;
+}

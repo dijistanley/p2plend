@@ -1,0 +1,14 @@
+{
+  "name": "p2plend",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "angular-google-places-autocomplete": "^0.2.7",
+    "angular-loading-overlay": "^1.1.1",
+    "angular-loading-overlay-http-interceptor": "^1.1.0",
+    "satellizer": "^0.15.5",
+    "angular": "^1.5.8",
+    "swiper": "latest",
+    "velocity": "^1.4.3"
+  }
+}

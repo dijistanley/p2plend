@@ -1,0 +1,59 @@
+<!-- START HEADER -->
+<nav class="header bg-header transparent-dark " data-pages="header" data-pages-header="autoresize" data-pages-resize-class="dark">
+    <div class="container relative">
+        <!-- START MOBILE CONTROLS -->
+        <!-- LEFT SIDE -->
+        <div class="pull-left">
+            <div class="header-inner">
+                <!--http://localhost:3000/assets/img/logo.png-->
+                <img src="assets/img/logo.png" class="logo" data-src-retina="assets/img/logo.png"
+                    alt="">
+                <!--<img src="assets/images/logo_full_white.png" class="alt" height="21" data-src-retina="assets/images/logo_full_white.png"
+                    alt="">-->
+            </div>
+        </div>
+        <!-- RIGHT SIDE -->
+        <div class="pull-right">
+            <div class="header-inner">
+                <div class="visible-sm-inline visible-xs-inline menu-toggler pull-right p-l-10" data-pages="header-toggle" data-pages-element="#header">
+                    <div class="one"></div>
+                    <div class="two"></div>
+                    <div class="three"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pull-right menu-content mobile-dark clearfix" data-pages="menu-content" data-pages-direction="slideRight" id="header">
+
+            <a href="#" class="padding-10 visible-xs-inline visible-sm-inline pull-right m-t-10 m-b-10 m-r-10" data-pages="header-toggle"
+                data-pages-element="#header">
+                <i class=" pg-close_line"></i>
+            </a>
+
+            <div class="header-inner">
+                <ul class="menu">
+                    <li>
+                        <a ui-sref="front.borrow" data-text="Borrow" ng-class="{'active': is('front.borrow')}">Borrow </a>
+                    </li>
+                    <li>
+                        <a ui-sref="front.invest" data-text="Invest" ng-class="{'active': is('front.invest')}">Invest </a>
+                    </li>
+                    
+                    <li>
+                        <a ui-sref="access.login" data-text="Login" ng-class="{'active': is('access.login')}">Sign In </a>
+                    </li>
+                </ul>
+
+                <div class="font-arial m-l-35 m-r-35 m-b-20  visible-sm visible-xs m-t-30">
+                    <p class="fs-11 no-margin small-text p-b-20">
+                        P2P lending brought to you by VoidDigits
+                    </p>
+                    <p class="fs-11 small-text muted">Copyright &copy; 2016 p2pLend</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</nav>
+<!-- END HEADER -->
