@@ -62,7 +62,7 @@ angular.module('app')
 
             .state("access.signup", {
                 url: "/signup",
-                templateUrl: "tpl/access/login.html",
+                templateUrl: "tpl/access/signup.html",
                 controller: "SignupPageCtrl",
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -186,8 +186,9 @@ angular.module('app')
 
     .config(['$authProvider', function ($authProvider) {
 
-        $authProvider.baseUrl = 'http://patientportal.ehealth.ng';
-        $authProvider.loginUrl = 'http://api.ehealth.ng/patientportal/login';
+        $authProvider.baseUrl = 'http://uberlend.io';
+        $authProvider.loginUrl = 'http://api.uberlend.io/v1/auth/login';
+        $authProvider.signupUrl = 'http://api.uberlend.io/v1/auth/signup';
 
         console.log(".config authProvider successful");
     }])

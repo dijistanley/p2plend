@@ -7,7 +7,7 @@ angular.module('app')
         
     	$scope.user = {email : "", password : ""};
         
-        $scope.signin = function()
+        $scope.signup = function()
         {
             if($scope.email != "" && $scope.password != "" )
             {

@@ -1,0 +1,107 @@
+<!-- START PAGE-CONTAINER -->
+<div class="login-wrapper ">
+    <!-- START Login Background Pic Wrapper-->
+    <div class="bg-pic">
+        <!-- START Background Pic-->
+        <img src="assets/img/golden_bridge.jpg" data-src="assets/img/golden_bridge.jpg" ui-jq="unveil" data-src-retina="assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg"
+            alt="" class="lazy">
+            <!-- END Background Pic-->
+            <!-- START Background Caption-->
+            <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
+                <h2 class="semi-bold text-white">
+                    a cool title here
+                </h2>
+                <p class="small">
+                    some cool words here
+                </p>
+            </div>
+            <!-- END Background Caption-->
+    </div>
+    <!-- END Login Background Pic Wrapper-->
+    <!-- START Login Right Container-->
+    <div class="login-container bg-white">
+        <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+            <h3>{{app.name}}</h3>
+            <!--<img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" ui-jq="unveil" data-src-retina="assets/img/logo_2x.png"
+                width="78" height="22">-->
+            <p class="p-t-35">Sign into your account</p>
+            <!-- START Signup Form -->
+            <form id="form-register" class="p-t-15 " role="form" name="register" novalidate>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div pg-form-group="" class="form-group form-group-default" ng-class="{ 'has-error': register.fname.$invalid &amp;&amp; !register.fname.$pristine }">
+                            <label>First Name</label>
+                            <input type="text" name="fname" placeholder="John" class="form-control" ng-model="user.fname" required="">
+                        </div>
+                        <label class="error ng-hide" for="fname" ng-show="register.fname.$invalid &amp;&amp; !register.fname.$pristine">This field is required.</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <div pg-form-group="" class="form-group form-group-default" ng-class="{ 'has-error': register.lname.$invalid &amp;&amp; !register.lname.$pristine }">
+                            <label>Last Name</label>
+                            <input type="text" name="lname" placeholder="Smith" class="form-control" ng-model="user.lname" required="">
+                        </div>
+                        <label class="error ng-hide" for="lname" ng-show="register.lname.$invalid &amp;&amp; !register.lname.$pristine">This field is required.</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div pg-form-group="" class="form-group form-group-default" ng-class="{ 'has-error': register.uname.$invalid &amp;&amp; !register.uname.$pristine }">
+                            <label>User name</label>
+                            <input type="text" name="uname" placeholder="yourname.pages.com (this can be changed later)" class="form-control" ng-model="user.username"
+                                required="">
+                        </div>
+                        <label class="error ng-hide" for="uname" ng-show="register.uname.$invalid &amp;&amp; !register.uname.$pristine">This field is required.</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div pg-form-group="" class="form-group form-group-default" ng-class="{ 'has-error': register.pass.$invalid &amp;&amp; !register.pass.$pristine }">
+                            <label>Password</label>
+                            <input type="password" name="pass" placeholder="Minimum of 4 Charactors" class="form-control" ng-minlength="4" ng-model="user.password"
+                                required="">
+                        </div>
+                        <label class="error ng-hide" for="pass" ng-show="register.pass.$invalid &amp;&amp; !register.pass.$pristine">This field is required.</label>
+                        <label class="error ng-hide" for="pass" ng-show="register.pass.$error.minlength">Password should have at least 4 characters</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div pg-form-group="" class="form-group form-group-default" ng-class="{ 'has-error': register.email.$invalid &amp;&amp; !register.email.$pristine }">
+                            <label>Email</label>
+                            <input type="email" name="email" placeholder="We will send loging details to you" class="form-control" ng-model="user.email"
+                                required>
+                        </div>
+                        <label class="error ng-hide" for="email" ng-show="register.email.$invalid &amp;&amp; !register.email.$pristine">Enter a valid email.</label>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-6">
+                        <div class="checkbox ">
+                            <input type="checkbox" value="1" id="agreetoterms" ng-model="user.agreetoterms" required>
+                            <label for="agreetoterms">
+                                <p>I agree to <a href="">{{app.name}}'s Terms</a> and <a href="" >Privacy</a>.</p>
+                            </label>
+                        </div>
+                        <label class="error ng-hide" for="agreetoterms" ng-show="register.agreetoterms.$invalid &amp;&amp; !register.agreetoterms.$pristine">You have to agree to our terms and policies to create an {{app.name}} account.</label>
+                        <!--<p>I agree to <a href="" class="text-info small">{{app.name}}'s Terms</a> and <a href="" class="text-info small">Privacy</a>.</p>-->
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="">Help? Contact Support</a>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-cons m-t-10" type="submit" ng-disabled="register.$invalid" disabled="disabled" ng-click="signup()">Create an account</button>
+            </form>
+            <!--END Login Form-->
+            <div class="pull-bottom sm-pull-bottom">
+                <div class="m-b-30 p-r-80 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix">
+                    <h3>Already have an account ? </h3>
+                    <p>
+                        Sign in <a ui-sref="access.login">here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Login Right Container-->
+</div>
+<!-- END PAGE CONTAINER -->

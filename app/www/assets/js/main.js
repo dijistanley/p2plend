@@ -8,9 +8,10 @@ angular.module('app')
 
         // App globals
         $scope.app = {
-            company: "p2plend",
-            name: 'Peer to Peer lending platform',
-            description: '',
+            company: "uberloan",
+            name: 'Uberloan',
+            domain: 'Uberloan.io',
+            description: 'Peer to Peer lending platform',
             layout: {
                 menuPin: false,
                 menuBehind: false,
@@ -21,9 +22,19 @@ angular.module('app')
         }
         
         $scope.pages = {
-            home: "front.home",
-            login: "access.login",
-            dashboard: "back.dashboard"
+            front:  {
+                borrow:         "front.borrow",
+                invest:         "front.invest"
+            },
+            back:   {
+                dashboard:      "back.dashboard",
+                lend:           "back.lend",
+                invest:         "back.invest"
+            },
+            access: {
+                login:          "access.login",
+                signup:         "access.signup"
+            }
         }
 
         // Checks if the given state is the current state
@@ -41,7 +52,11 @@ angular.module('app')
         }
 
         $scope.gotologin = function(){
-            $scope.goto($scope.pages.login);
+            $scope.goto($scope.pages.access.login);
+        }
+
+        $scope.gotodashboard = function(){
+            $scope.goto($scope.pages.back.dashboard);
         }
         // Broadcasts a message to pgSearch directive to toggle search overlay
         $scope.showSearchOverlay = function() {

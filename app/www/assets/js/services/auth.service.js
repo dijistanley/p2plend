@@ -35,7 +35,7 @@ angular.module('app')
 
             return $auth.login(user) 
                 .then(function(response){
-                    // fetch patient personal information
+                    // fetch user information based on auth token received
                 }, ResponseHandler.HandleError);
 
         }

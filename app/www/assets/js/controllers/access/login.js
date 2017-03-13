@@ -17,7 +17,7 @@ angular.module('app')
                         if(AuthService.isAuthenticated())
                         {
                             // redirect to dashboard
-                            $scope.goto($scope.pages.dashboard);
+                            $scope.gotodashboard();
                         }
                     },
                     function(err){}
