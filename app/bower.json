@@ -7,6 +7,7 @@
     "angular-loading-overlay": "^1.1.1",
     "angular-loading-overlay-http-interceptor": "^1.1.1",
     "satellizer": "^0.15.5",
-    "swiper": "latest"
+    "swiper": "latest",
+    "velocity": "^1.4.3"
   }
 }

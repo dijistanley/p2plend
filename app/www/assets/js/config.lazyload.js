@@ -238,7 +238,7 @@ angular.module('app')
                 {
                     name: 'swiper',
                     files: [
-                        'assets/plugins/swiper/js/swiper.jquery.min.js'
+                        'assets/plugins_bower/swiper/js/swiper.jquery.min.js'
                     ]
                 }
 
