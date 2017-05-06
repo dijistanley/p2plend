@@ -179,19 +179,52 @@ angular.module('app')
                             });
                     }]
                 }
-            });
+            })
+
+            .state('back.account', {
+                url: "/account",
+                templateUrl: "tpl/back/account.html",
+                controller: 'AccountCtrl',
+                resolve: {
+                    deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            /* 
+                                Load any ocLazyLoad module here
+                                ex: 'wysihtml5'
+                                Open config.lazyload.js for available modules
+                            */
+                        ], {
+                            insertBefore: '#lazyload_placeholder'
+                        })
+                            .then(function () {
+                                return $ocLazyLoad.load([
+                                    'assets/js/controllers/back/account.js'
+                                ]);
+                            });
+                    }]
+                }
+            })
+        ;
 
         console.log(".config route successful");
     }])
 
-    .config(['$authProvider', function ($authProvider) {
 
-        $authProvider.baseUrl = 'http://uberlend.io';
-        $authProvider.loginUrl = 'http://api.uberlend.io/v1/auth/login';
-        $authProvider.signupUrl = 'http://api.uberlend.io/v1/auth/signup';
+    .config(['$authProvider', function ($authProvider) {
+        //$authProvider.baseUrl = 'http://uberlend.io';
+        // $authProvider.loginUrl = 'http://api.uberlend.io/v1/auth/login';
+        // $authProvider.signupUrl = 'http://api.uberlend.io/v1/auth/signup';
+        //$authProvider.baseUrl = 'http://localhost:54194';
+        //$authProvider.loginUrl = 'http://localhost:54194/oauth2/token';
+        //$authProvider.signupUrl = 'http://localhost:54194/api/account';
 
         console.log(".config authProvider successful");
     }])
+
+    .constant('ngAuthSettings', {
+        apiServiceBaseUri: 'http://localhost:54194/',
+        clientId: 'ngAuthApp'
+    })
 
     .factory('allHttpInterceptor', function (bsLoadingOverlayHttpInterceptorFactoryFactory) {
         return bsLoadingOverlayHttpInterceptorFactoryFactory();
@@ -199,6 +232,11 @@ angular.module('app')
 
     .config(function ($httpProvider) {
         $httpProvider.interceptors.push('allHttpInterceptor');
+        $httpProvider.interceptors.push('authInterceptorService');
         console.log(".config httpProvider successful");
     })
-    ;
+
+    .run(['authService', function (authService) {
+        authService.fillAuthData();
+    }])
+;

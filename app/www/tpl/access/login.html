@@ -31,7 +31,7 @@
                 <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : login.username.$invalid && !login.username.$pristine }">
                     <label>Login</label>
                     <div class="controls">
-                        <input type="text" name="username" placeholder="User Name" class="form-control" ng-model="user.username" required>
+                        <input type="text" name="username" placeholder="User Name" class="form-control" ng-model="loginData.userName" required>
                     </div>
                 </div>
                 <label class="error" for="username" ng-show="login.username.$invalid && !login.username.$pristine">This field is required.</label>
@@ -40,7 +40,7 @@
                 <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : login.password.$invalid && !login.password.$pristine }">
                     <label>Password</label>
                     <div class="controls">
-                        <input type="password" class="form-control" name="password" placeholder="Credentials" ng-model="user.password" required>
+                        <input type="password" class="form-control" name="password" placeholder="Credentials" ng-model="loginData.password" required>
                     </div>
                 </div>
                 <label class="error" for="password" ng-show="login.password.$invalid && !login.password.$pristine">This field is required.</label>

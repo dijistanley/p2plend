@@ -10,6 +10,7 @@ angular.module('app', [
     'ui.router',
     'ui.utils',
     'oc.lazyLoad',
+    'LocalStorageModule',
     'google.places',
     'satellizer',
     'bsLoadingOverlay',

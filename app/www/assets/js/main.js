@@ -29,7 +29,8 @@ angular.module('app')
             back:   {
                 dashboard:      "back.dashboard",
                 lend:           "back.lend",
-                invest:         "back.invest"
+                invest:         "back.invest",
+                account:        "back.account"
             },
             access: {
                 login:          "access.login",

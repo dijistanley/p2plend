@@ -3,18 +3,22 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('LoginPageCtrl', ['$scope', 'AuthService', function($scope, AuthService) {
+    .controller('LoginPageCtrl', ['$scope', 'authService', function($scope, authService) {
         
-    	$scope.user = {username : "", password : ""};
-        
+    	$scope.loginData = {
+    	    userName: "",
+    	    password: "",
+    	    useRefreshTokens: false
+    	};
+
         $scope.signin = function()
         {
-            if($scope.username != "" && $scope.password != "" )
+            if ($scope.loginData.userName != "" && $scope.loginData.password != "")
             {
-                AuthService.signin($scope.username, $scope.password)
+                authService.login($scope.loginData)
                 .then(
                     function(response){
-                        if(AuthService.isAuthenticated())
+                        if(authService.authentication.isAuth)
                         {
                             // redirect to dashboard
                             $scope.gotodashboard();
