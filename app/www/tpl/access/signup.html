@@ -24,7 +24,7 @@
             <h3>{{app.name}}</h3>
             <!--<img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" ui-jq="unveil" data-src-retina="assets/img/logo_2x.png"
                 width="78" height="22">-->
-            <p class="p-t-35">Sign into your account</p>
+            <p class="p-t-35">Signup for an {{app.name}} account</p>
             <!-- START Signup Form -->
             <form id="form-register" class="p-t-15 " role="form" name="register" novalidate>
                 <div class="row">
@@ -43,7 +43,7 @@
                         <label class="error ng-hide" for="lname" ng-show="register.lname.$invalid &amp;&amp; !register.lname.$pristine">This field is required.</label>
                     </div>
                 </div>
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-sm-12">
                         <div pg-form-group="" class="form-group form-group-default" ng-class="{ 'has-error': register.uname.$invalid &amp;&amp; !register.uname.$pristine }">
                             <label>User name</label>
@@ -51,6 +51,16 @@
                                 required="">
                         </div>
                         <label class="error ng-hide" for="uname" ng-show="register.uname.$invalid &amp;&amp; !register.uname.$pristine">This field is required.</label>
+                    </div>
+                </div>-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div pg-form-group="" class="form-group form-group-default" ng-class="{ 'has-error': register.email.$invalid &amp;&amp; !register.email.$pristine }">
+                            <label>Email</label>
+                            <input type="email" name="email" placeholder="We will send loging details to you" class="form-control" ng-model="user.email"
+                                required>
+                        </div>
+                        <label class="error ng-hide" for="email" ng-show="register.email.$invalid &amp;&amp; !register.email.$pristine">Enter a valid email.</label>
                     </div>
                 </div>
                 <div class="row">
@@ -62,16 +72,6 @@
                         </div>
                         <label class="error ng-hide" for="pass" ng-show="register.pass.$invalid &amp;&amp; !register.pass.$pristine">This field is required.</label>
                         <label class="error ng-hide" for="pass" ng-show="register.pass.$error.minlength">Password should have at least 4 characters</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div pg-form-group="" class="form-group form-group-default" ng-class="{ 'has-error': register.email.$invalid &amp;&amp; !register.email.$pristine }">
-                            <label>Email</label>
-                            <input type="email" name="email" placeholder="We will send loging details to you" class="form-control" ng-model="user.email"
-                                required>
-                        </div>
-                        <label class="error ng-hide" for="email" ng-show="register.email.$invalid &amp;&amp; !register.email.$pristine">Enter a valid email.</label>
                     </div>
                 </div>
                 <div class="row m-t-10">

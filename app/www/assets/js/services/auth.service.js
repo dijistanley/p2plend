@@ -67,11 +67,20 @@ angular.module('app')
 
             _logOut();
 
-            $http = $http || $injector.get('$http');
-            return $http.post(serviceBase + 'api/account/register', registration).then(function (response) {
-                return response;
-            });
+            var deferred = $q.defer();
 
+            $http = $http || $injector.get('$http');
+            return $http.post(serviceBase + 'api/account/register', registration)
+            .success(function (response){
+                // successfully registered user
+                deferred.resolve(response);
+            })
+            .error(function(err, status){
+                // failed to register new user
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
         };
 
         var _login = function (loginData) {
@@ -85,7 +94,8 @@ angular.module('app')
             var deferred = $q.defer();
 
             $http = $http || $injector.get('$http');
-            $http.post(serviceBase + 'oauth2/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+            $http.post(serviceBase + 'oauth2/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            .success(function (response) {
 
                 if (loginData.useRefreshTokens) {
                     localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: response.refresh_token, useRefreshTokens: true });
@@ -98,8 +108,8 @@ angular.module('app')
                 _authentication.useRefreshTokens = loginData.useRefreshTokens;
 
                 deferred.resolve(response);
-
-            }).error(function (err, status) {
+            })
+            .error(function (err, status) {
                 _logOut();
                 deferred.reject(err);
             });

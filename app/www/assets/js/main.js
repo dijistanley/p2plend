@@ -8,9 +8,9 @@ angular.module('app')
 
         // App globals
         $scope.app = {
-            company: "uberloan",
-            name: 'Uberloan',
-            domain: 'Uberloan.io',
+            company: "uberlend",
+            name: 'Uberlend',
+            domain: 'Uberlend.io',
             description: 'Peer to Peer lending platform',
             layout: {
                 menuPin: false,
