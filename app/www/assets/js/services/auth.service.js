@@ -178,6 +178,19 @@ angular.module('app')
         return authServiceFactory;
     }])
     
+    .factory('userInfoFactory', ['$q', 'localStorageService', function ($q, localStorageService) {
+
+        var userInfo = {};
+
+        userInfo.userName = "";
+        userInfo.email = "";
+        userInfo.firstName = "";
+        userInfo.lastname = "";
+
+        return  userInfo;
+
+    }])
+
     .factory('authInterceptorService', ['$q', '$injector', '$location', 'localStorageService', function ($q, $injector, $location, localStorageService){
 
         var authInterceptorServiceFactory = {};

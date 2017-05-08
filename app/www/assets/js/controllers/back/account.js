@@ -3,8 +3,7 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('AccountCtrl', ['$scope', function ($scope) {
-
-        $scope.message = "How are you doing today?";
+    .controller('AccountCtrl', ['$scope', 'userInfoFactory', function ($scope, userInfoFactory) {
+        $scope.userInfo = userInfoFactory;
 
     }]);
