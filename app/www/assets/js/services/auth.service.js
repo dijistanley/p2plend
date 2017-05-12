@@ -25,33 +25,8 @@ angular.module('app')
         }
     })
 
-    //.service("AuthService", function ($q, $http, $auth, API, ResponseHandler) {
-
-    //    this.signin = function (username, password) {
-    //        var user = {
-    //            email: username, 
-    //            password: password
-    //        }
-
-    //        return $auth.authenticate('p2plend',user) // pass grant_type in post request
-    //            .then(function(response){
-    //                // fetch user information based on auth token received
-    //                $http.post()
-                    
-    //            }, ResponseHandler.HandleError);
-
-    //    }
-
-    //    this.signout = function(){
-    //        return $auth.logout();
-    //    }
-
-    //    this.isAuthenticated = function(){
-    //        return $auth.isAuthenticated();
-    //    }
-    //})
-
-    .factory('authService', ['$q', '$injector', 'localStorageService', 'ngAuthSettings', 'ResponseHandler', function ($q, $injector, localStorageService, ngAuthSettings, ResponseHandler)
+    
+    .factory('authService', ['$q', '$injector', 'localStorageService', 'ngAuthSettings', 'ResponseHandler', 'API', function ($q, $injector, localStorageService, ngAuthSettings, ResponseHandler, API)
     {
         var serviceBase = ngAuthSettings.apiServiceBaseUri;
         var $http;
@@ -70,7 +45,7 @@ angular.module('app')
             var deferred = $q.defer();
 
             $http = $http || $injector.get('$http');
-            return $http.post(serviceBase + 'api/account/register', registration)
+            return $http.post(serviceBase + API.apiCreateAccount, registration)
             .success(function (response){
                 // successfully registered user
                 deferred.resolve(response);
@@ -94,7 +69,7 @@ angular.module('app')
             var deferred = $q.defer();
 
             $http = $http || $injector.get('$http');
-            $http.post(serviceBase + 'oauth2/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            $http.post(serviceBase + ngAuthSettings.apiOAuthToken, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
             .success(function (response) {
 
                 if (loginData.useRefreshTokens) {

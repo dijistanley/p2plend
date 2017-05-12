@@ -222,7 +222,9 @@ angular.module('app')
     }])
 
     .constant('ngAuthSettings', {
-        apiServiceBaseUri: 'http://localhost:54194/',
+        //apiServiceBaseUri: 'http://localhost:54194/',
+        apiServiceBaseUri: 'http://35.185.109.148/',
+        apiOAuthToken: 'oauth2/token',
         clientId: 'ngAuthApp'
     })
 
