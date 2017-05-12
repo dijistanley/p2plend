@@ -21,3 +21,15 @@
     width:100%;
     padding-left: 0!important;
 }
+
+
+.inline-headers h1,  .inline-headers h2, .inline-headers h3,  .inline-headers h4, .inline-headers h5,  .inline-headers h6 {
+    display: inline;
+}
+
+.vertical-center {
+  float:none;
+    display:inline-block;
+    vertical-align:middle;
+    margin-right:-4px;
+}

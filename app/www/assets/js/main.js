@@ -4,7 +4,7 @@
  * ============================================================ */
 
 angular.module('app')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$state', 'bsLoadingOverlayService', function($scope, $rootScope, $state, bsLoadingOverlayService) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$state', 'bsLoadingOverlayService', 'userInfoFactory', function ($scope, $rootScope, $state, bsLoadingOverlayService, userInfoFactory) {
 
         // App globals
         $scope.app = {
@@ -90,6 +90,8 @@ angular.module('app')
             //     bsLoadingOverlayService.stop();
             // }
         }
+
+        $scope.userInfo = userInfoFactory;
     }]);
 
 

@@ -157,10 +157,44 @@ angular.module('app')
 
         var userInfo = {};
 
-        userInfo.userName = "";
-        userInfo.email = "";
-        userInfo.firstName = "";
-        userInfo.lastname = "";
+        userInfo.userName = null;
+        userInfo.email = null;
+        userInfo.emailConfirmed = false;
+        userInfo.phoneNumber = null;
+        userInfo.phoneNumberConfirmed = false;
+        userInfo.firstName = null;
+        userInfo.lastName = null;
+
+        userInfo.address = {};
+        userInfo.address.text = null;
+        userInfo.address.line = null;
+        userInfo.address.city = null;
+        userInfo.address.district = null;
+        userInfo.address.state = null;
+        userInfo.address.postalCode = null;
+        userInfo.address.country = null;
+        userInfo.address.period = null;
+
+        var loadDummyData = function () {
+            userInfo.userName = "voiddigits";
+            userInfo.email = "service@voiddigits.com";
+            userInfo.emailConfirmed = false;
+
+            userInfo.phoneNumber = "(123) 456-7890";
+            userInfo.phoneNumberConfirmed = true;
+            userInfo.firstName = "Void";
+            userInfo.lastName = "Digits";
+
+            userInfo.address.text = "123 - 12345 11 Ave SW, Orance City, Province - P2S123";
+            userInfo.address.line = "123 - 12345 11 Ave";
+            userInfo.address.district = "SW";
+            userInfo.address.city = "Orange City";
+            userInfo.address.state = "Province State";
+            userInfo.address.country = "Candyland";
+            userInfo.address.postalCode = "P2S123";
+        };
+
+        loadDummyData();
 
         return  userInfo;
 
