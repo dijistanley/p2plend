@@ -91,7 +91,10 @@ angular.module('app')
             // }
         }
 
-        $scope.userInfo = userInfoFactory;
+        $scope.userInfo = userInfoFactory.userInfo;
+        $scope.refreshUserInfo=function(){
+            $scope.userInfo= userInfoFactory.userInfo;
+        };
     }]);
 
 
