@@ -205,24 +205,7 @@ angular.module('app')
                 }
             })
 
-            .state("access.logout", {
-                url: "/login",
-                templateUrl: "tpl/access/login.html",
-                controller: "LoginPageCtrl",
-                resolve: {
-                    deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load([
-                        ], {
-                                insertBefore: '#lazyload_placeholder'
-                            })
-                            .then(function () {
-                                return $ocLazyLoad.load([
-                                    'assets/js/controllers/access/login.js'
-                                ]);
-                            });
-                    }]
-                }
-            })
+          
         ;
 
         console.log(".config route successful");
