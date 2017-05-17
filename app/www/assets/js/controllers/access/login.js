@@ -15,6 +15,7 @@ angular.module('app')
         {
             if ($scope.loginData.userName != "" && $scope.loginData.password != "")
             {
+                // Show working notification
                 authService.login($scope.loginData)
                 .then(
                     function(response){
