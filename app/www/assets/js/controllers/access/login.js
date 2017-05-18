@@ -5,7 +5,7 @@
 angular.module('app')
     .controller('LoginPageCtrl', ['$scope', 'authService','userInfoFactory', function($scope, authService,userInfoFactory) {
         
-        authService.logOut();
+        
         
     	$scope.loginData = {
     	    userName: "",

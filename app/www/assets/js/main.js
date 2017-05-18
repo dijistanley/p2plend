@@ -4,7 +4,7 @@
  * ============================================================ */
 
 angular.module('app')
-    .controller('AppCtrl', ['$scope', '$rootScope', '$state', 'bsLoadingOverlayService', 'userInfoFactory', function ($scope, $rootScope, $state, bsLoadingOverlayService, userInfoFactory) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$state', 'bsLoadingOverlayService', 'userInfoFactory','authService', function ($scope, $rootScope, $state, bsLoadingOverlayService, userInfoFactory, authService) {
 
         // App globals
         $scope.app = {
@@ -94,7 +94,13 @@ angular.module('app')
         $scope.userInfo = userInfoFactory.userInfo;
         $scope.refreshUserInfo=function(){
             $scope.userInfo= userInfoFactory.userInfo;
-        };
+        }
+        $scope.logout=function(){
+
+            authService.logOut();
+            $scope.gotologin();
+        }
+
     }]);
 
 
