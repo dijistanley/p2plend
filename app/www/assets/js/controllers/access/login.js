@@ -3,7 +3,9 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('LoginPageCtrl', ['$scope', 'authService', function($scope, authService) {
+    .controller('LoginPageCtrl', ['$scope', 'authService','userInfoFactory', function($scope, authService,userInfoFactory) {
+        
+        
         
     	$scope.loginData = {
     	    userName: "",
@@ -21,8 +23,17 @@ angular.module('app')
                     function(response){
                         if(authService.authentication.isAuth)
                         {
-                            // redirect to dashboard
-                            $scope.gotodashboard();
+                            userInfoFactory.loadUserInfo()
+                            .then(
+                                function(response){
+                                    $scope.refreshUserInfo();
+                                     // redirect to dashboard
+                                     $scope.gotodashboard();
+                                },
+                                function(err){
+                                    var x= 0;
+                                })
+                            
                         }
                     },
                     function(err){}

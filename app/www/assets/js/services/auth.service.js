@@ -153,7 +153,7 @@ angular.module('app')
         return authServiceFactory;
     }])
     
-    .factory('userInfoFactory', ['$q', 'localStorageService', function ($q, localStorageService) {
+    .factory('userInfoFactory', ['$q', '$injector', 'localStorageService','API', function ($q, $injector, localStorageService,API) {
 
         var userInfo = {};
 
@@ -175,28 +175,64 @@ angular.module('app')
         userInfo.address.country = null;
         userInfo.address.period = null;
 
-        var loadDummyData = function () {
-            userInfo.userName = "voiddigits";
-            userInfo.email = "service@voiddigits.com";
-            userInfo.emailConfirmed = false;
+        // var loadDummyData = function () {
+        //     userInfo.userName = "voiddigits";
+        //     userInfo.email = "service@voiddigits.com";
+        //     userInfo.emailConfirmed = false;
 
-            userInfo.phoneNumber = "(123) 456-7890";
-            userInfo.phoneNumberConfirmed = true;
-            userInfo.firstName = "Void";
-            userInfo.lastName = "Digits";
+        //     userInfo.phoneNumber = "(123) 456-7890";
+        //     userInfo.phoneNumberConfirmed = true;
+        //     userInfo.firstName = "Void";
+        //     userInfo.lastName = "Digits";
 
-            userInfo.address.text = "123 - 12345 11 Ave SW, Orance City, Province - P2S123";
-            userInfo.address.line = "123 - 12345 11 Ave";
-            userInfo.address.district = "SW";
-            userInfo.address.city = "Orange City";
-            userInfo.address.state = "Province State";
-            userInfo.address.country = "Candyland";
-            userInfo.address.postalCode = "P2S123";
+        //     userInfo.address.text = "123 - 12345 11 Ave SW, Orance City, Province - P2S123";
+        //     userInfo.address.line = "123 - 12345 11 Ave";
+        //     userInfo.address.district = "SW";
+        //     userInfo.address.city = "Orange City";
+        //     userInfo.address.state = "Province State";
+        //     userInfo.address.country = "Candyland";
+        //     userInfo.address.postalCode = "P2S123";
+        // };
+        var loadInfoServer=function(){
+            var deferred = $q.defer();
+
+            var $http = $http || $injector.get('$http');
+            $http.get(API.server + API.apiUserInfo )
+            .success(function (response) {
+            userInfo.userName = response.Username;
+            userInfo.email = response.Email;
+            userInfo.emailConfirmed = response.EmailConfirmed;
+
+            userInfo.phoneNumber = response.PhoneNumber;
+            userInfo.phoneNumberConfirmed = response.PhoneNumberConfirmed;
+            userInfo.firstName = response.FirstName;
+            userInfo.lastName = response.LastName;
+
+            userInfo.address.text = response.Address.Text;
+            userInfo.address.line = response.Address.Line;
+            userInfo.address.district = response.Address.District;
+            userInfo.address.city = response.Address.City;
+            userInfo.address.state = response.Address.State;
+            userInfo.address.country = response.Address.Country;
+            userInfo.address.postalCode = response.Address.PostalCode;
+             
+
+                deferred.resolve(response);
+            })
+            .error(function (err, status) {
+               
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
         };
 
-        loadDummyData();
+        // loadDummyData();
 
-        return  userInfo;
+        return  {
+            userInfo: userInfo,
+            loadUserInfo: loadInfoServer
+        };
 
     }])
 

@@ -204,6 +204,8 @@ angular.module('app')
                     }]
                 }
             })
+
+          
         ;
 
         console.log(".config route successful");
