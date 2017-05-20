@@ -153,9 +153,11 @@ angular.module('app')
         return authServiceFactory;
     }])
     
-    .factory('userInfoFactory', ['$q', '$injector', 'localStorageService','API', function ($q, $injector, localStorageService,API) {
+    .factory('userInfoFactory', ['$q', '$injector', 'localStorageService','API','ngAuthSettings', function ($q, $injector, localStorageService, API, ngAuthSettings) {
 
         var userInfo = {};
+        var serviceBase = ngAuthSettings.apiServiceBaseUri;
+        var $http;
 
         userInfo.userName = null;
         userInfo.email = null;
@@ -227,11 +229,36 @@ angular.module('app')
             return deferred.promise;
         };
 
+        var updateemail=function(form){
+            var deferred = $q.defer();
+
+           
+
+            $http = $http || $injector.get('$http');
+            $http.post(serviceBase + ngAuthSettings.apiOAuthToken, form, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            .success(function (response) {
+
+                deferred.resolve(response);
+            })
+            .error(function (err, status) {
+                
+                deferred.reject(err);
+            });
+
+            
+            
+            return deferred.promise;
+        };
+
+        
+
         // loadDummyData();
+
 
         return  {
             userInfo: userInfo,
-            loadUserInfo: loadInfoServer
+            loadUserInfo: loadInfoServer,
+            updateemail: updateemail
         };
 
     }])

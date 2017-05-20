@@ -39,5 +39,5 @@ angular.module('app')
                     function(err){}
                 )
             }
-        }
+        };
     }]);
