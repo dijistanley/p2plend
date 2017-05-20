@@ -3,9 +3,11 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('AccountCtrl', ['$scope','$injector', 'userInfoFactory','API','ngAuthSettings', function ($scope, $injector, userInfoFactory,API,ngAuthSettings) {
+    .controller('AccountCtrl', ['$scope','$injector','$q', 'userInfoFactory','API','ngAuthSettings', function ($scope, $injector, $q, userInfoFactory,API,ngAuthSettings) {
     	var serviceBase = ngAuthSettings.apiServiceBaseUri;
         var $http;
+        var deferred = $q.defer();
+
         $scope.userInfo = userInfoFactory.userInfo;
         $scope.form = {};
         
@@ -16,7 +18,7 @@ angular.module('app')
         	if($scope.email != "" && $scope.password != ""){
 
         		$http = $http || $injector.get('$http');
-        		$http.post(serviceBase + ngAuthSettings.apiOAuthToken, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+        		$http.post(serviceBase + ngAuthSettings.apiOAuthToken, $scope.form, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
         		.success(function (response) {
 
         		   console.log('editted');
