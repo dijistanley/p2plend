@@ -229,13 +229,12 @@ angular.module('app')
             return deferred.promise;
         };
 
-        var updateemail=function(form){
+        var updateEmail=function(form){
             var deferred = $q.defer();
-
-           
+            var data= "email="+form.email+"&Password="+form.password;
 
             $http = $http || $injector.get('$http');
-            $http.post(serviceBase + ngAuthSettings.apiOAuthToken, form, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            $http.post(serviceBase + API.updateemail, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
             .success(function (response) {
 
                 deferred.resolve(response);
@@ -250,6 +249,49 @@ angular.module('app')
             return deferred.promise;
         };
 
+
+        var updatePassword=function(form){
+            var deferred = $q.defer();
+            var data= "currentpassword="+form.password+"&newpassword="+form.newpassword+"&confirmnewpassword="+form.confirmnewpassword;
+
+            $http = $http || $injector.get('$http');
+            $http.post(serviceBase + API.updatepassword, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            .success(function (response) {
+
+                deferred.resolve(response);
+            })
+            .error(function (err, status) {
+                
+                deferred.reject(err);
+            });
+
+            
+            
+            return deferred.promise;
+        };
+
+
+
+        var updateAddress=function(address){
+            var deferred = $q.defer();
+
+            $http = $http || $injector.get('$http');
+            $http.post(serviceBase + ngAuthSettings.apiOAuthToken, address, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            .success(function (response) {
+
+                deferred.resolve(response);
+            })
+            .error(function (err, status) {
+                
+                deferred.reject(err);
+            });
+
+            
+            
+            return deferred.promise;
+        };
+
+
         
 
         // loadDummyData();
@@ -258,7 +300,9 @@ angular.module('app')
         return  {
             userInfo: userInfo,
             loadUserInfo: loadInfoServer,
-            updateemail: updateemail
+            updateEmail: updateEmail,
+            updatePassword: updatePassword,
+            updateAddress: updateAddress
         };
 
     }])

@@ -55,8 +55,8 @@
                                         Your Current Address
                                     </h5>
                                     <span class="pull-right">
-                                        <button class="btn btn-default" type="button">
-                                            got a new address ? <i class="fa fa-edit" />
+                                        <button class="btn btn-default pull-right" data-target="#modelEditAddress" data-toggle="modal" id="btnTogglemodalAddress">
+                                            got a new address? <i class="fa fa-edit" />
                                         </button>
                                     </span>
                                 </div>
@@ -198,5 +198,27 @@
         </div>
 
     </div>
+
+</div>
+<div class="modal fade fill-in" id="modelEditAddress" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        <i class="pg-close_line fa-3x"></i>
+    </button>
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="text-left p-b-5">Update Address</h3>
+            </div>
+            <div class="modal-body">
+                <div ng-include src="'tpl/back/edit/account/addressform.html'" include-replace />
+            </div>
+
+            <div class="modal-footer">
+            </div>
+        </div>
+
+    </div>
+
+</div>
 
 </div>

@@ -10,11 +10,11 @@ angular.module('app')
         $scope.form = {};
        
 
-        $scope.updateemail=function(){
+        $scope.updateEmail=function(){
 
         	if($scope.form.email != "" && $scope.form.password != ""){
 
-        		userInfoFactory.updateemail($scope.form)
+        		userInfoFactory.updateEmail($scope.form)
         		.then(function(response){
 
 		        		console.log("editted");
@@ -27,6 +27,44 @@ angular.module('app')
         	}
 
         };
+
+        $scope.updatePassword=function(){
+
+        	if($scope.form.newpassword != "" && $scope.form.confirmnewpassword!= ""){
+
+        		userInfoFactory.updatePassword($scope.form)
+        		.then(function(response){
+
+		        		console.log("editted");
+		        	},
+		        	function(err){
+
+		        		console.log("Something went wrong");
+		        	});
+
+        	}
+
+        };
+
+        $scope.updateAddress=function(){
+
+
+        		userInfoFactory.updateAddress($scope.form)
+        		.then(function(response){
+
+		        		console.log($scope.form);
+		        	},
+		        	function(err){
+
+		        		console.log("Something went wrong");
+		        	});
+
+        
+
+
+
+        };
+
 
 
 

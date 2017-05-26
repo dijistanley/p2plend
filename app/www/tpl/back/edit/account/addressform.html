@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="p-t-15 p-b-15">
+            
+        <!-- Update address-->
+        <div class="row">
+                <form id="form-editaddress" name="editaddress" class="p-t-15" role="form" novalidate>
+                    <!-- START Form Control-->
+                    <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : editaddress.text.$invalid && !editaddress.text.$pristine }">
+                        <label>Text</label>
+                        <div class="controls">
+                            <input type="text" name="text" placeholder="" class="form-control input-lg" ng-model="form.address.text" required>
+                        </div>
+                    </div>
+                    <label class="error" for="text" ng-show="editaddress.text.$invalid && !editaddress.text.$pristine">This field cannot be blank.</label>
+
+                    <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : editaddress.line.$invalid && !editaddress.line.$pristine }">
+                        <label>Line</label>
+                        <div class="controls">
+                            <input type="text" name="line" class="form-control input-lg" ng-model="form.address.line" required>
+                        </div>
+                    </div>
+                    <label class="error" for="line" ng-show="editaddress.line.$invalid && !editaddress.line.$pristine">This field cannot be blank.</label>
+
+                    <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : editaddress.district.$invalid && !editaddress.district.$pristine }">
+                        <label>District</label>
+                        <div class="controls">
+                            <input type="text" name="district" placeholder="" class="form-control input-lg" ng-model="form.address.district" required>
+                        </div>
+                    </div>
+                    <label class="error" for="text" ng-show="editaddress.district.$invalid && !editaddress.district.$pristine">This field cannot be blank.</label>
+
+                    <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : editaddress.city.$invalid && !editaddress.city.$pristine }">
+                        <label>City</label>
+                        <div class="controls">
+                            <input type="text" name="city" placeholder="" class="form-control input-lg" ng-model="form.address.city" required>
+                        </div>
+                    </div>
+                    <label class="error" for="text" ng-show="editaddress.city.$invalid && !editaddress.city.$pristine">This field cannot be blank.</label>
+
+                    <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : editaddress.state.$invalid && !editaddress.state.$pristine }">
+                        <label>State</label>
+                        <div class="controls">
+                            <input type="text" name="state" placeholder="" class="form-control input-lg" ng-model="form.address.state" required>
+                        </div>
+                    </div>
+                    <label class="error" for="state" ng-show="editaddress.state.$invalid && !editaddress.state.$pristine">This field cannot be blank.</label>
+
+                    <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : editaddress.country.$invalid && !editaddress.country.$pristine }">
+                        <label>Country</label>
+                        <div class="controls">
+                            <input type="text" name="country" placeholder="" class="form-control input-lg" ng-model="form.address.country" required>
+                        </div>
+                    </div>
+                    <label class="error" for="country" ng-show="editaddress.country.$invalid && !editaddress.country.$pristine">This field cannot be blank.</label>
+
+                    <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : editaddress.postalCode.$invalid && !editaddress.postalCode.$pristine }">
+                        <label>PostalCode</label>
+                        <div class="controls">
+                            <input type="text" name="postalCode" placeholder="" class="form-control input-lg" ng-model="form.address.postalCode" required>
+                        </div>
+                    </div>
+                    <label class="error" for="postalCode" ng-show="editaddress.postalCode.$invalid && !editaddress.postalCode.$pristine">This field cannot be blank.</label>
+
+                    <!-- END Form Control-->
+                    <button class="btn btn-primary btn-cons m-t-10" type="submit" ng-disabled="editaddress.$invalid" ng-click="updateAddress()">Update Address</button>
+                </form>
+                <pre>{{form.address | json}}</pre>
+        </div>
+
+ 
+    </div>
+</div>
