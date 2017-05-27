@@ -272,11 +272,33 @@ angular.module('app')
 
 
 
-        var updateAddress=function(address){
+        var updateAddress=function(form){
             var deferred = $q.defer();
+            var data= "text="+form.address.text+"&line="+form.address.line+"&city="+form.address.city+"&district="+form.address.district+"&state="+form.address.state+"&postalcode="+form.address.postalCode+"&country="+form.address.country
 
             $http = $http || $injector.get('$http');
-            $http.post(serviceBase + ngAuthSettings.apiOAuthToken, address, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            $http.post(serviceBase + API.updateaddress, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            .success(function (response) {
+
+                deferred.resolve(response);
+            })
+            .error(function (err, status) {
+                
+                deferred.reject(err);
+            });
+
+            
+            
+            return deferred.promise;
+        };
+
+
+        var updatePhonenumber=function(form){
+            var deferred = $q.defer();
+            var data= "newphonenumber="+form.phonenumber;
+
+            $http = $http || $injector.get('$http');
+            $http.post(serviceBase + API.updatephonenumber, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
             .success(function (response) {
 
                 deferred.resolve(response);
@@ -302,7 +324,8 @@ angular.module('app')
             loadUserInfo: loadInfoServer,
             updateEmail: updateEmail,
             updatePassword: updatePassword,
-            updateAddress: updateAddress
+            updateAddress: updateAddress,
+            updatePhonenumber: updatePhonenumber
         };
 
     }])

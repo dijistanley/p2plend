@@ -52,7 +52,26 @@ angular.module('app')
         		userInfoFactory.updateAddress($scope.form)
         		.then(function(response){
 
-		        		console.log($scope.form);
+		        		console.log("editted");
+		        	},
+		        	function(err){
+
+		        		console.log("Something went wrong");
+		        	});
+
+        
+
+
+
+        };
+
+        $scope.updatePhonenumber=function(){
+
+
+        		userInfoFactory.updatePhonenumber($scope.form)
+        		.then(function(response){
+
+		        		console.log("editted");
 		        	},
 		        	function(err){
 
