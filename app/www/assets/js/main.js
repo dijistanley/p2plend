@@ -101,6 +101,21 @@ angular.module('app')
             $scope.gotologin();
         }
 
+        $scope.notification= function( style, message, type, position, toAttach){
+            var style= style; //flip for bouncy flip and bar for notification bar
+            var message = message; // Message to display inside the notification
+            var type = type; // Info, Success, Error etc
+            var position = position; // Placement of the notification
+
+             $(toAttach).pgNotification({
+                    style: style,
+                    message: message,
+                    position: position,
+                    timeout: 0,
+                    type: type
+                }).show();
+        }
+
     }]);
 
 

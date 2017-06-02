@@ -231,7 +231,13 @@ angular.module('app')
 
         var updateEmail=function(form){
             var deferred = $q.defer();
-            var data= "email="+form.email+"&Password="+form.password;
+            
+            var data= {
+                email:    form.email,
+                password: form.password
+
+            };
+            
 
             $http = $http || $injector.get('$http');
             $http.post(serviceBase + API.updateemail, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
@@ -252,7 +258,14 @@ angular.module('app')
 
         var updatePassword=function(form){
             var deferred = $q.defer();
-            var data= "currentpassword="+form.password+"&newpassword="+form.newpassword+"&confirmnewpassword="+form.confirmnewpassword;
+            var data={
+
+                currentpassword:    form.password,
+                newpassword:        form.newpassword,
+                confirmnewpassword: form.confirmnewpassword
+
+            };
+            
 
             $http = $http || $injector.get('$http');
             $http.post(serviceBase + API.updatepassword, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
@@ -274,7 +287,15 @@ angular.module('app')
 
         var updateAddress=function(form){
             var deferred = $q.defer();
-            var data= "text="+form.address.text+"&line="+form.address.line+"&city="+form.address.city+"&district="+form.address.district+"&state="+form.address.state+"&postalcode="+form.address.postalCode+"&country="+form.address.country
+            var data={
+                line:      form.address.line,
+                city:      form.address.city,
+                district:  form.address.district,
+                state:     form.address.state,
+                postalcode:form.address.state,
+                country:   form.address.country
+            };
+            
 
             $http = $http || $injector.get('$http');
             $http.post(serviceBase + API.updateaddress, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
@@ -295,7 +316,10 @@ angular.module('app')
 
         var updatePhonenumber=function(form){
             var deferred = $q.defer();
-            var data= "newphonenumber="+form.phonenumber;
+            var data={
+              newphonenumber: form.phonenumber
+            };
+            
 
             $http = $http || $injector.get('$http');
             $http.post(serviceBase + API.updatephonenumber, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
@@ -320,11 +344,11 @@ angular.module('app')
 
 
         return  {
-            userInfo: userInfo,
-            loadUserInfo: loadInfoServer,
-            updateEmail: updateEmail,
-            updatePassword: updatePassword,
-            updateAddress: updateAddress,
+            userInfo:          userInfo,
+            loadUserInfo:      loadInfoServer,
+            updateEmail:       updateEmail,
+            updatePassword:    updatePassword,
+            updateAddress:     updateAddress,
             updatePhonenumber: updatePhonenumber
         };
 

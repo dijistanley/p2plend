@@ -18,10 +18,12 @@ angular.module('app')
         		.then(function(response){
 
 		        		console.log("editted");
+                        $scope.notification( "flip", "Editted", "success", "top-right", "#modelEditEmailPassword");
 		        	},
 		        	function(err){
 
 		        		console.log("Something went wrong");
+                        $scope.notification("flip", "Something went wrong", "danger", "top-right", "#modelEditEmailPassword");
 		        	});
 
         	}
@@ -36,10 +38,12 @@ angular.module('app')
         		.then(function(response){
 
 		        		console.log("editted");
+                         $scope.notification("bar","Editted", "success", "top-right", "#modelEditEmailPassword");
 		        	},
 		        	function(err){
 
 		        		console.log("Something went wrong");
+                        $scope.notification("bar","Something went wrong", "danger", "top-right", "#modelEditEmailPassword");
 		        	});
 
         	}
@@ -53,10 +57,12 @@ angular.module('app')
         		.then(function(response){
 
 		        		console.log("editted");
+                        $scope.notification("flip","Editted", "success", "top-right", "#modelEditAddress");
 		        	},
 		        	function(err){
 
 		        		console.log("Something went wrong");
+                        $scope.notification("flip","Something went wrong", "danger", "top-right", "#modelEditAddress");
 		        	});
 
         
@@ -72,10 +78,12 @@ angular.module('app')
         		.then(function(response){
 
 		        		console.log("editted");
+                        $scope.notification("bar","Editted", "success", "top", "#modelEditPhonenumber");
 		        	},
 		        	function(err){
 
 		        		console.log("Something went wrong");
+                        $scope.notification("bar","Something went wrong", "danger", "top-right", "#modelEditPhonenumber");
 		        	});
 
         
