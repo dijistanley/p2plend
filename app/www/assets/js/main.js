@@ -91,21 +91,74 @@ angular.module('app')
             // }
         }
 
-        $scope.userInfo = userInfoFactory.userInfo;
-        $scope.refreshUserInfo=function(){
-            $scope.userInfo= userInfoFactory.userInfo;
+        $scope.userInfoFactory = userInfoFactory;
+        $scope.userInfo = $scope.userInfoFactory.userInfo;
+        $scope.refreshUserInfo = function () {
+            $scope.userInfoFactory.loadUserInfo()
+            .then(
+            function () {
+                $scope.userInfo = $scope.userInfoFactory.userInfo;
+            },
+            function () { })
+            
         }
+
         $scope.logout=function(){
 
             authService.logOut();
             $scope.gotologin();
         }
 
+        //
+        // type is Info or Success or Error
+        // 
+        $scope.notifySuccess = function (message, container) {
+            // Show an bar notification attached to top right of the screen
+            var position = "top-right";
+            var attach;
+            if (!container)
+            {
+                attach = "body";
+            } else
+            {
+                attach = container;
+            }
+
+
+            $(attach).pgNotification({
+                style: 'bar',
+                message: message,
+                position: position,
+                timeout: 2500,
+                type: "success"
+            }).show();
+            
+        }
+
+        $scope.notifyError = function (message, container) {
+            // Show an bar notification attached to top right of the screen
+            var position = "top-right";
+            var attach;
+            if (!container) {
+                attach = "body";
+            } else {
+                attach = container;
+            }
+            $(attach).pgNotification({
+                style: 'bar',
+                message: message,
+                position: position,
+                timeout: 2500,
+                type: "danger"
+            }).show();
+
+        }
+
         $scope.notification= function( style, message, type, position, toAttach){
             var style= style; //flip for bouncy flip and bar for notification bar
             var message = message; // Message to display inside the notification
             var type = type; // Info, Success, Error etc
-            var position = position; // Placement of the notification
+            var position = "top-right"; // Placement of the notification
 
              $(toAttach).pgNotification({
                     style: style,

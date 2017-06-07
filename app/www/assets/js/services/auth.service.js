@@ -72,17 +72,26 @@ angular.module('app')
             $http.post(serviceBase + ngAuthSettings.apiOAuthToken, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
             .success(function (response) {
 
-                if (loginData.useRefreshTokens) {
-                    localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: response.refresh_token, useRefreshTokens: true });
-                }
-                else {
-                    localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: "", useRefreshTokens: false });
-                }
-                _authentication.isAuth = true;
-                _authentication.userName = loginData.userName;
-                _authentication.useRefreshTokens = loginData.useRefreshTokens;
+                if (response.error) {
+                    if (response.error_description) {
+                        deferred.reject(response.error_description);
+                    } else {
+                        deferred.reject("Can not log you in right now, please try again later");
+                    }
+                } else {
 
-                deferred.resolve(response);
+                    if (loginData.useRefreshTokens) {
+                        localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: response.refresh_token, useRefreshTokens: true });
+                    }
+                    else {
+                        localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, refreshToken: "", useRefreshTokens: false });
+                    }
+                    _authentication.isAuth = true;
+                    _authentication.userName = loginData.userName;
+                    _authentication.useRefreshTokens = loginData.useRefreshTokens;
+
+                    deferred.resolve(response);
+                }
             })
             .error(function (err, status) {
                 _logOut();
@@ -153,7 +162,9 @@ angular.module('app')
         return authServiceFactory;
     }])
     
-    .factory('userInfoFactory', ['$q', '$injector', 'localStorageService','API','ngAuthSettings', function ($q, $injector, localStorageService, API, ngAuthSettings) {
+    .factory('userInfoFactory', ['$q', '$injector', 'localStorageService','API','ngAuthSettings', 'authService', function ($q, $injector, localStorageService, API, ngAuthSettings) {
+
+        var dataLoaded = false;
 
         var userInfo = {};
         var serviceBase = ngAuthSettings.apiServiceBaseUri;
@@ -195,34 +206,68 @@ angular.module('app')
         //     userInfo.address.country = "Candyland";
         //     userInfo.address.postalCode = "P2S123";
         // };
-        var loadInfoServer=function(){
+        var loadData = function () {
+            
+            if (dataLoaded) {
+
+                // load from local storage
+                var x = localStorageService.get('userInfoData');
+                if (x) {
+                    userInfo.userName = x.userName;
+                    userInfo.email = x.email;
+                    userInfo.emailConfirmed = x.emailConfirmed;
+
+                    userInfo.phoneNumber = x.phoneNumber;
+                    userInfo.phoneNumberConfirmed = x.phoneNumberConfirmed;
+                    userInfo.firstName = x.firstName;
+                    userInfo.lastName = x.lastName;
+
+                    if (x.Address) {
+                        userInfo.address.text = x.address.text;
+                        userInfo.address.line = x.address.line;
+                        userInfo.address.district = x.address.district;
+                        userInfo.address.city = x.address.city;
+                        userInfo.address.state = x.address.state;
+                        userInfo.address.country = x.address.country;
+                        userInfo.address.postalCode = x.address.postalCode;
+                    }
+                }
+            } else {
+                loadInfoServer();
+            }
+        };
+
+        var loadInfoServer = function () {
             var deferred = $q.defer();
 
             var $http = $http || $injector.get('$http');
-            $http.get(API.server + API.apiUserInfo )
+            $http.get(API.server + API.apiUserInfo)
             .success(function (response) {
-            userInfo.userName = response.Username;
-            userInfo.email = response.Email;
-            userInfo.emailConfirmed = response.EmailConfirmed;
+                
+                userInfo.userName = response.Username;
+                userInfo.email = response.Email;
+                userInfo.emailConfirmed = response.EmailConfirmed;
 
-            userInfo.phoneNumber = response.PhoneNumber;
-            userInfo.phoneNumberConfirmed = response.PhoneNumberConfirmed;
-            userInfo.firstName = response.FirstName;
-            userInfo.lastName = response.LastName;
+                userInfo.phoneNumber = response.PhoneNumber;
+                userInfo.phoneNumberConfirmed = response.PhoneNumberConfirmed;
+                userInfo.firstName = response.FirstName;
+                userInfo.lastName = response.LastName;
 
-            userInfo.address.text = response.Address.Text;
-            userInfo.address.line = response.Address.Line;
-            userInfo.address.district = response.Address.District;
-            userInfo.address.city = response.Address.City;
-            userInfo.address.state = response.Address.State;
-            userInfo.address.country = response.Address.Country;
-            userInfo.address.postalCode = response.Address.PostalCode;
-             
+                userInfo.address.text = response.Address.Text;
+                userInfo.address.line = response.Address.Line;
+                userInfo.address.district = response.Address.District;
+                userInfo.address.city = response.Address.City;
+                userInfo.address.state = response.Address.State;
+                userInfo.address.country = response.Address.Country;
+                userInfo.address.postalCode = response.Address.PostalCode;
+
+                dataLoaded = true;
+                localStorageService.set('userInfoData',  userInfo);
 
                 deferred.resolve(response);
             })
             .error(function (err, status) {
-               
+
                 deferred.reject(err);
             });
 
@@ -255,7 +300,6 @@ angular.module('app')
             return deferred.promise;
         };
 
-
         var updatePassword=function(form){
             var deferred = $q.defer();
             var data={
@@ -283,25 +327,28 @@ angular.module('app')
             return deferred.promise;
         };
 
-
-
         var updateAddress=function(form){
             var deferred = $q.defer();
             var data={
-                line:      form.address.line,
-                city:      form.address.city,
-                district:  form.address.district,
-                state:     form.address.state,
-                postalcode:form.address.state,
-                country:   form.address.country
+                Line:       form.line,
+                City:       form.city,
+                district:   form.district,
+                state:      form.state,
+                postalcode: form.postalcode,
+                country:    form.country
             };
             
 
             $http = $http || $injector.get('$http');
-            $http.post(serviceBase + API.updateaddress, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            $http.post(serviceBase + API.updateaddress, data)
             .success(function (response) {
 
-                deferred.resolve(response);
+                if (response.message && response.modelState) {
+                    deferred.reject(response.message);
+                }
+                else {
+                    deferred.resolve(response);
+                }
             })
             .error(function (err, status) {
                 
@@ -312,7 +359,6 @@ angular.module('app')
             
             return deferred.promise;
         };
-
 
         var updatePhonenumber=function(form){
             var deferred = $q.defer();
@@ -337,15 +383,13 @@ angular.module('app')
             return deferred.promise;
         };
 
-
-        
-
         // loadDummyData();
 
 
         return  {
             userInfo:          userInfo,
-            loadUserInfo:      loadInfoServer,
+            loadUserInfo: loadInfoServer,
+            loadData: loadData,
             updateEmail:       updateEmail,
             updatePassword:    updatePassword,
             updateAddress:     updateAddress,

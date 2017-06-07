@@ -31,12 +31,13 @@ angular.module('app')
                                      $scope.gotodashboard();
                                 },
                                 function(err){
-                                    var x= 0;
+                                    $scope.notifyError(err);
                                 })
-                            
                         }
                     },
-                    function(err){}
+                    function (err) {
+                        $scope.notifyError(err);
+                    }
                 )
             }
         };

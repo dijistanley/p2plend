@@ -10,6 +10,7 @@
     "swiper": "latest",
     "velocity": "^1.4.3",
     "angular-local-storage": "^0.5.2",
-    "angular-input-match": "^0.0.3"
+    "angular-input-match": "^0.0.3",
+    "angular-google-maps": "^2.4.1"
   }
 }
