@@ -193,6 +193,7 @@ angular.module('app')
                                 ex: 'wysihtml5'
                                 Open config.lazyload.js for available modules
                             */
+                            //"google-map"
                         ], {
                             insertBefore: '#lazyload_placeholder'
                         })
@@ -240,7 +241,12 @@ angular.module('app')
         console.log(".config httpProvider successful");
     })
 
-    .run(['authService', function (authService) {
+    .run(['authService', 'userInfoFactory', function (authService, userInfoFactory) {
         authService.fillAuthData();
+
+        if(authService.authentication.isAuth)
+        {
+            userInfoFactory.loadData();
+        }
     }])
 ;

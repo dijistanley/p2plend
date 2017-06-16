@@ -55,8 +55,8 @@
                                         Your Current Address
                                     </h5>
                                     <span class="pull-right">
-                                        <button class="btn btn-default" type="button">
-                                            got a new address ? <i class="fa fa-edit" />
+                                        <button class="btn btn-default pull-right" data-target="#modelEditAddress" data-toggle="modal" id="btnTogglemodalAddress">
+                                            got a new address? <i class="fa fa-edit" />
                                         </button>
                                     </span>
                                 </div>
@@ -83,7 +83,7 @@
                                         Your Phone Number
                                     </h5>
                                     <span class="pull-right">
-                                        <button class="btn btn-default" type="button">
+                                        <button class="btn btn-default pull-right"  data-target="#modelEditPhonenumber" data-toggle="modal" id="btnTogglemodalPhonenumber">
                                             got a new number ? <i class="fa fa-edit" />
                                         </button>
                                     </span>
@@ -137,7 +137,7 @@
                     </div>
                 </div>
 
-                <!-- Edit Bank Account -->
+                <!-- Edit Timezone -->
                 <div class="row p-b-10 p-t-10">
                     <div class="col-md-10 p-t-10 p-b-10">
                         <div class="col-md-3 text-center">
@@ -188,7 +188,55 @@
                     <h3 class="text-left p-b-5">Update your Email or Password</h3>
                 </div>
                 <div class="modal-body">
-                    <div ng-include src="'tpl/back/edit/account/emailpasswordform.html'" include-replace />
+                    <div ng-include src="'tpl/back/edit/account/emailform.html'" include-replace />
+                    <br />
+                    
+                    <h3 class="text-left">Update your Password</h3>
+                    <div ng-include src="'tpl/back/edit/account/passwordform.html'" include-replace />
+                </div>
+
+                <div class="modal-footer">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="modal fade fill-in" id="modelEditAddress" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        <i class="pg-close_line fa-3x"></i>
+    </button>
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="text-left p-b-5">Update Your Address</h3>
+            </div>
+            <div class="modal-body">
+                <div ng-include src="'tpl/back/edit/account/addressform.html'" include-replace />
+            </div>
+
+            <div class="modal-footer">
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+    <div class="modal fade fill-in" id="modelEditPhonenumber" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="pg-close_line fa-3x"></i>
+        </button>
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="text-left p-b-5">Update your Phone Number</h3>
+                </div>
+                <div class="modal-body">
+                    <div ng-include src="'tpl/back/edit/account/phonenumberform.html'" include-replace />
                 </div>
 
                 <div class="modal-footer">

@@ -1,0 +1,31 @@
+﻿<div class="row">
+    <div class="p-t-15 p-b-15">
+
+        <hr />
+
+        <!-- Update email -->
+        <div class="row">
+                <form id="form-editemail" name="editemail" class="p-t-15" role="form" novalidate>
+                    <!-- START Form Control-->
+                    <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : editemail.email.$invalid && !editemail.email.$pristine }">
+                        <label>Email</label>
+                        <div class="controls">
+                            <input type="email" name="email" placeholder="newemail@example.com" class="form-control input-lg" ng-model="form.email" required>
+                        </div>
+                    </div>
+                    <label class="error" for="email" ng-show="editemail.email.$invalid && !editemail.email.$pristine">Provide a valid email.</label>
+
+                    <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : editemail.password.$invalid && !editemail.password.$pristine }">
+                        <label>Current Password</label>
+                        <div class="controls">
+                            <input type="password" name="password" class="form-control input-lg" ng-model="form.password" required>
+                        </div>
+                    </div>
+                    <label class="error" for="password" ng-show="editemail.password.$invalid && !editemail.password.$pristine">Password must match your current password</label>
+
+                    <!-- END Form Control-->
+                    <button class="btn btn-primary btn-cons m-t-10" type="submit" ng-disabled="editemail.$invalid" ng-click="updateEmail()">Update Email</button>
+                </form>
+        </div>
+    </div>
+</div>
