@@ -21,7 +21,15 @@ angular.module('app')
         // from the API response payload.
         this.HandleSuccess = function(response) 
         {
-            return (response.data);
+
+            if (response.message && response.modelState) {
+                return $q.reject(response.message);
+            }
+            else {
+
+
+                return (response.data);
+            }
         }
     })
 
@@ -285,18 +293,20 @@ angular.module('app')
             
 
             $http = $http || $injector.get('$http');
-            $http.post(serviceBase + API.updateemail, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            $http.post(serviceBase + API.updateemail, data)
             .success(function (response) {
-
-                deferred.resolve(response);
+                if (response.message && response.modelState) {
+                    deferred.reject(response.message);
+                }
+                else {
+                    deferred.resolve(response);
+                }
             })
             .error(function (err, status) {
                 
                 deferred.reject(err);
             });
 
-            
-            
             return deferred.promise;
         };
 
@@ -312,10 +322,14 @@ angular.module('app')
             
 
             $http = $http || $injector.get('$http');
-            $http.post(serviceBase + API.updatepassword, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            $http.post(serviceBase + API.updatepassword, data)
             .success(function (response) {
-
-                deferred.resolve(response);
+                if (response.message && response.modelState) {
+                    deferred.reject(response.message);
+                }
+                else {
+                    deferred.resolve(response);
+                }
             })
             .error(function (err, status) {
                 
@@ -355,8 +369,6 @@ angular.module('app')
                 deferred.reject(err);
             });
 
-            
-            
             return deferred.promise;
         };
 
@@ -368,17 +380,19 @@ angular.module('app')
             
 
             $http = $http || $injector.get('$http');
-            $http.post(serviceBase + API.updatephonenumber, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            $http.post(serviceBase + API.updatephonenumber, data)
             .success(function (response) {
-
-                deferred.resolve(response);
+                if (response.message && response.modelState) {
+                    deferred.reject(response.message);
+                }
+                else {
+                    deferred.resolve(response);
+                }
             })
             .error(function (err, status) {
                 
                 deferred.reject(err);
             });
-
-            
             
             return deferred.promise;
         };

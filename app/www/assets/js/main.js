@@ -13,7 +13,7 @@ angular.module('app')
             domain: 'Uberlend.io',
             description: 'Peer to Peer lending platform',
             layout: {
-                menuPin: false,
+                menuPin: true,
                 menuBehind: false,
                 theme: 'pages/css/pages.css',
                 style: 'assets/css/style.css'

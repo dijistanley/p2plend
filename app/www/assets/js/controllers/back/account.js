@@ -14,11 +14,10 @@ angular.module('app')
 
                 $scope.userInfoFactory.updateEmail($scope.form)
         		.then(function (response) {
-        		    console.log("editted");
         		    $scope.notifySuccess("Your email has been updated", "#modelEditEmailPassword");
+        		    $scope.refreshUserInfo();
         		},
 		        	function (err) {
-		        	    console.log("Something went wrong");
 		        	    $scope.notifyError("We could not update your email at this time", "#modelEditEmailPassword");
 		        	});
             }
@@ -31,15 +30,11 @@ angular.module('app')
 
                 $scope.userInfoFactory.updatePassword($scope.form)
         		.then(function (response) {
-        		    console.log("editted");
         		    $scope.notifySuccess("Your password has been changed", "#modelEditEmailPassword");
         		},
 		        	function (err) {
-
-		        	    console.log("Something went wrong");
 		        	    $scope.notifyError("We could not update your password at this time", "#modelEditEmailPassword");
 		        	});
-
             }
 
         };
@@ -71,13 +66,10 @@ angular.module('app')
 
             $scope.userInfoFactory.updatePhonenumber($scope.form)
             .then(function (response) {
-
-                console.log("editted");
+                $scope.refreshUserInfo();
                 $scope.notifySuccess("Your phone number has been changed", "#modelEditPhonenumber");
             },
                 function (err) {
-
-                    console.log("Something went wrong");
                     $scope.notifyError("We could not update your phone number at this time", "#modelEditPhonenumber");
                 });
         };

@@ -7,4 +7,5 @@ angular.module('app')
         
     	$scope.message = "How are you doing today?";
 
+    	$scope.refreshUserInfo();
     }]);

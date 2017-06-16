@@ -8,7 +8,7 @@
                     <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : editphonenumber.phonenumber.$invalid && !editphonenumber.phonenumber.$pristine }">
                         <label>Phone Number</label>
                         <div class="controls">
-                            <input type="text" name="phonenumber" placeholder="+234 XXX XXX XXXX" class="form-control input-lg" ng-model="form.phonenumber" ng-pattern="/^\+\d{3}\s?\d{3}\s?\d{3}\s?\d{4}$/" required>
+                            <input type="text" name="phonenumber" class="form-control input-lg" ng-model="form.phonenumber" phone-input required>
                         </div>
                     </div>
                     <label class="error" for="phonenumber" ng-show="editphonenumber.phonenumber.$invalid && !editphonenumber.phonenumber.$pristine">Provide a valid phone number.</label>
@@ -24,7 +24,6 @@
                     <!-- END Form Control-->
                     <button class="btn btn-primary btn-cons m-t-10" type="submit" ng-disabled="editphonenumber.$invalid" ng-click="updatePhonenumber()">Update Phone Number</button>
                 </form>
-                <pre>{{form | json}}</pre>
         </div>
     </div>
 </div>

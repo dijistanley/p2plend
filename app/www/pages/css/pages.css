@@ -398,7 +398,7 @@ body.rtl [class*="col-"] {
   padding-left: 32px;
   min-height: 40px;
   line-height: 40px;
-  font-size: 14px;
+  font-size: 18px;
   clear: both;
 }
 .page-sidebar .sidebar-menu .menu-items > li > a.open {
@@ -432,7 +432,7 @@ body.rtl [class*="col-"] {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 65%;
+  /*width: 65%;*/
 }
 .page-sidebar .sidebar-menu .menu-items > li > a > .details {
   font-size: 12px;
@@ -537,16 +537,16 @@ body.rtl [class*="col-"] {
 */
 .icon-thumbnail {
   display: inline-block;
-  background: #21252d;
+  /*background: #21252d;*/
   height: 40px;
   width: 40px;
   line-height: 40px;
   text-align: center;
   vertical-align: middle;
   position: relative;
-  left: 0;
-  float: right;
-  margin-right: 14px;
+  left: 32px;
+  float: left;
+  /*margin-right: 14px;*/
   color: #788195;
   font-size: 16px;
   -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.05, 0.74, 0.27, 0.99);
@@ -560,7 +560,7 @@ body.rtl [class*="col-"] {
   font-weight: bold;
 }
 .icon-thumbnail > i {
-  font-size: 14px;
+  font-size: 30px;
 }
 .nav-collapse.collapse {
   height: 100%  !important;

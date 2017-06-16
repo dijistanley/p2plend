@@ -181,6 +181,54 @@ angular.module('app')
                 }
             })
 
+            .state('back.loan', {
+                url: "/loan",
+                templateUrl: "tpl/back/loan.html",
+                controller: 'LoanCtrl',
+                resolve: {
+                    deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            /* 
+                                Load any ocLazyLoad module here
+                                ex: 'wysihtml5'
+                                Open config.lazyload.js for available modules
+                            */
+                        ], {
+                            insertBefore: '#lazyload_placeholder'
+                        })
+                            .then(function () {
+                                return $ocLazyLoad.load([
+                                    'assets/js/controllers/back/loan.js'
+                                ]);
+                            });
+                    }]
+                }
+            })
+
+            .state('back.invest', {
+                url: "/invest",
+                templateUrl: "tpl/back/invest.html",
+                controller: 'InvestCtrl',
+                resolve: {
+                    deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            /* 
+                                Load any ocLazyLoad module here
+                                ex: 'wysihtml5'
+                                Open config.lazyload.js for available modules
+                            */
+                        ], {
+                            insertBefore: '#lazyload_placeholder'
+                        })
+                            .then(function () {
+                                return $ocLazyLoad.load([
+                                    'assets/js/controllers/back/invest.js'
+                                ]);
+                            });
+                    }]
+                }
+            })
+
             .state('back.account', {
                 url: "/account",
                 templateUrl: "tpl/back/account.html",
